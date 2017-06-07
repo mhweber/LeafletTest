@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>Fall Festival 10K</title>
+  <link rel="stylesheet" href="leaflet.css" />
+  <script src="leaflet.js"></script>
+    <script src="jquery-2.1.1.min.js"></script>
+<style>
+#map {
+    width: 960px;
+    height:500px;
+}
+</style>
+</head>
+<body>
+
+    <div id="map"></div>
+
+<script>
+	// initialize the map
+    var map = L.map('map',{
+    center: [44.565396, -123.269010],
+    zoom: 16
+    });
+	// load a tile layer
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+	// load GeoJSON from an external file
+    $.getJSON("FallFestival10K.geojson",function(data){
+    // add GeoJSON layer to the map once the file is loaded
+    L.geoJson(data).addTo(map);
+  });
+</script>
+
+</body>
+
+</html>
